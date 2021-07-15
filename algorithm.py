@@ -12,11 +12,11 @@ def solve(n):
     stack = [[i] for i in reversed(range(n))]
     while len(stack) > 0:
         queens = stack.pop()
-        print(queens)
 
         if len(queens) == n:
-            return [queen+1 for queen in queens]
+            return queens
 
         for new_queen in range(n):
             if get_queen_valid(n, queens, new_queen):
+                yield queens + [new_queen]
                 stack.append(queens + [new_queen])
